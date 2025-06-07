@@ -36,7 +36,7 @@ export default async function EditCategoriaPage({
 }: {
   params: { id: string };
 }) {
-  const { id } = await params;
+  const { id } = params;
 
   const categoria = await getCategoriaById(id);
 

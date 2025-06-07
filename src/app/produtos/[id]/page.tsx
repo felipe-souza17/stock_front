@@ -57,7 +57,7 @@ export default async function EditProdutoPage({
 }: {
   params: { id: string };
 }) {
-  const { id } = await params;
+  const { id } = params;
 
   const produto = await getProdutoById(id);
 

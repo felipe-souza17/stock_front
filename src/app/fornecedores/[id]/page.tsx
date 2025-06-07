@@ -30,7 +30,7 @@ export default async function EditFornecedorPage({
 }: {
   params: { id: string };
 }) {
-  const { id } = await params;
+  const { id } = params;
   const fornecedor = await getFornecedorById(id);
 
   if (!fornecedor) {
