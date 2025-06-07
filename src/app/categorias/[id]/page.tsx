@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { notFound } from "next/navigation";
-import { type NextPage } from "next";
 
 interface Categoria {
   id: number;

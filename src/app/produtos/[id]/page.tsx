@@ -3,6 +3,14 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { notFound } from "next/navigation";
+
+interface Params {
+  id: string;
+}
+
+interface Props {
+  params: Params;
+}
 interface Categoria {
   id: number;
   nome: string;
@@ -52,11 +60,7 @@ async function getProdutoById(id: string): Promise<Produto | null> {
   }
 }
 
-export default async function EditProdutoPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default async function EditProdutoPage({ params }: Props) {
   const { id } = params;
 
   const produto = await getProdutoById(id);

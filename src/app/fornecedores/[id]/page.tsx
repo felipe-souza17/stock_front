@@ -4,6 +4,14 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { notFound } from "next/navigation";
 
+interface Params {
+  id: string;
+}
+
+interface Props {
+  params: Params;
+}
+
 interface Fornecedor {
   id: number;
   nome: string;
@@ -25,11 +33,7 @@ async function getFornecedorById(id: string): Promise<Fornecedor | null> {
   }
 }
 
-export default async function EditFornecedorPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default async function EditFornecedorPage({ params }: Props) {
   const { id } = params;
   const fornecedor = await getFornecedorById(id);
 
