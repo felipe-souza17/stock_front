@@ -3,16 +3,19 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { notFound } from "next/navigation";
+import { type NextPage } from "next";
 
 interface Categoria {
   id: number;
   nome: string;
 }
 
-interface CategoriaEditPageProps {
-  params: {
-    id: string;
-  };
+interface Params {
+  id: string;
+}
+
+interface Props {
+  params: Params;
 }
 
 async function getCategoriaById(id: string): Promise<Categoria | null> {
@@ -37,9 +40,7 @@ async function getCategoriaById(id: string): Promise<Categoria | null> {
   }
 }
 
-export default async function EditCategoriaPage({
-  params,
-}: CategoriaEditPageProps) {
+export default async function EditCategoriaPage({ params }: Props) {
   const { id } = params;
 
   const categoria = await getCategoriaById(id);
