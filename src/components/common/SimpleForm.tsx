@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,14 +17,13 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import Error from "next/error";
 
-// Interface genérica para entidades simples (id e nome)
 interface SimpleEntity {
-  id?: number; // ID é opcional para novas entidades
+  id?: number;
   nome: string;
 }
 
-// Esquema de validação com Zod para o nome
 const formSchema = z.object({
   nome: z
     .string()
@@ -39,10 +38,10 @@ const formSchema = z.object({
 type SimpleFormValues = z.infer<typeof formSchema>;
 
 interface SimpleFormProps<T extends SimpleEntity> {
-  title: string; // Título do formulário (Ex: "Categoria", "Fornecedor")
-  apiEndpoint: string; // Rota da API (Ex: "/categorias", "/fornecedores")
-  initialData?: T; // Dados iniciais para edição (opcional)
-  redirectPath: string; // Caminho para redirecionar após sucesso (Ex: "/categorias")
+  title: string;
+  apiEndpoint: string;
+  initialData?: T;
+  redirectPath: string;
 }
 
 export default function SimpleForm<T extends SimpleEntity>({
@@ -92,11 +91,9 @@ export default function SimpleForm<T extends SimpleEntity>({
 
       router.push(redirectPath);
       router.refresh();
-    } catch (err: any) {
+    } catch (err) {
       console.error(`Erro ao salvar ${title.toLowerCase()}:`, err);
-      toast.error(
-        err.message || `Ocorreu um erro ao salvar ${title.toLowerCase()}.`
-      );
+      toast.error(`Ocorreu um erro ao salvar ${title.toLowerCase()}.`);
     }
   };
 

@@ -105,11 +105,9 @@ export default function SimpleTable<T extends SimpleEntity>({
       setIsDeleteDialogOpen(false);
       setItemToDelete(null);
       fetchData(); // Recarrega os dados após a exclusão
-    } catch (err: any) {
+    } catch (err) {
       console.error(`Erro ao deletar ${itemToDelete.nome}:`, err);
-      toast.error(
-        err.message || `Ocorreu um erro ao deletar ${itemToDelete.nome}.`
-      );
+      toast.error(`Ocorreu um erro ao deletar ${itemToDelete.nome}.`);
     }
   };
 

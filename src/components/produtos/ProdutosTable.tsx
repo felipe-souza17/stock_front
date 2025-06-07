@@ -1,4 +1,4 @@
-"use client"; // Este componente precisará de interatividade (estado para a paginação, fetch de dados)
+"use client";
 
 import React, { useEffect, useState, useMemo } from "react";
 import {
@@ -19,7 +19,6 @@ import {
   PaginationLink,
   PaginationEllipsis,
 } from "@/components/ui/pagination";
-import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import {
   AlertDialog,
@@ -79,13 +78,12 @@ export default function ProdutosTable({
   const router = useRouter();
   const [produtos, setProdutos] = useState<Produto[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(initialPage);
-  const [pageSize, setPageSize] = useState<number>(initialSize);
+  const [pageSize] = useState<number>(initialSize);
   const [totalElements, setTotalElements] = useState<number>(0);
   const [totalPages, setTotalPages] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [productToDelete, setProductToDelete] = useState<Produto | null>(null);
 
   const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -131,13 +129,12 @@ export default function ProdutosTable({
       }
 
       toast.success(`Produto "${productToDelete.nome}" deletado com sucesso.`);
-      setIsDeleteDialogOpen(false);
       setProductToDelete(null);
       fetchProdutos(currentPage, pageSize);
       router.refresh();
-    } catch (err: any) {
+    } catch (err) {
       console.error("Erro ao deletar produto:", err);
-      toast.error(err.message || "Ocorreu um erro ao deletar o produto.");
+      toast.error("Ocorreu um erro ao deletar o produto.");
     }
   };
 
@@ -165,7 +162,7 @@ export default function ProdutosTable({
     );
 
     let startPage = Math.max(0, currentPage - Math.floor(maxPagesToShow / 2));
-    let endPage = Math.min(totalPages - 1, startPage + maxPagesToShow - 1);
+    const endPage = Math.min(totalPages - 1, startPage + maxPagesToShow - 1);
 
     if (endPage - startPage + 1 < maxPagesToShow) {
       startPage = Math.max(0, endPage - maxPagesToShow + 1);

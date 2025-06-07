@@ -184,9 +184,9 @@ export default function ProdutoForm({ initialData }: ProdutoFormProps) {
 
       router.push("/produtos");
       router.refresh();
-    } catch (err: any) {
+    } catch (err) {
       console.error("Erro ao salvar produto:", err);
-      toast.error(err.message || "Ocorreu um erro ao salvar o produto.");
+      toast.error("Ocorreu um erro ao salvar o produto.");
     }
   };
 

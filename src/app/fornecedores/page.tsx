@@ -1,13 +1,4 @@
 import SimpleTable from "@/components/common/SimpleTable";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { PlusCircle } from "lucide-react";
-
-// Defina a interface para Fornecedor
-interface Fornecedor {
-  id: number;
-  nome: string;
-}
 
 export default function FornecedoresPage() {
   const columns = [

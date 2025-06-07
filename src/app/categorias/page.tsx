@@ -1,13 +1,4 @@
 import SimpleTable from "@/components/common/SimpleTable";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { PlusCircle } from "lucide-react";
-
-// Defina a interface para Categoria
-interface Categoria {
-  id: number;
-  nome: string;
-}
 
 export default function CategoriasPage() {
   const columns = [
