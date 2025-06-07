@@ -9,7 +9,7 @@ interface Params {
 }
 
 interface Props {
-  params: Params;
+  params: Promise<Params>;
 }
 interface Categoria {
   id: number;
@@ -61,7 +61,7 @@ async function getProdutoById(id: string): Promise<Produto | null> {
 }
 
 export default async function EditProdutoPage({ params }: Props) {
-  const { id } = params;
+  const { id } = await params;
 
   const produto = await getProdutoById(id);
 

@@ -14,7 +14,7 @@ interface Params {
 }
 
 interface Props {
-  params: Params;
+  params: Promise<Params>;
 }
 
 async function getCategoriaById(id: string): Promise<Categoria | null> {
@@ -40,7 +40,7 @@ async function getCategoriaById(id: string): Promise<Categoria | null> {
 }
 
 export default async function EditCategoriaPage({ params }: Props) {
-  const { id } = params;
+  const { id } = await params;
 
   const categoria = await getCategoriaById(id);
 

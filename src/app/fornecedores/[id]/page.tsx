@@ -9,7 +9,7 @@ interface Params {
 }
 
 interface Props {
-  params: Params;
+  params: Promise<Params>;
 }
 
 interface Fornecedor {
@@ -34,7 +34,7 @@ async function getFornecedorById(id: string): Promise<Fornecedor | null> {
 }
 
 export default async function EditFornecedorPage({ params }: Props) {
-  const { id } = params;
+  const { id } = await params;
   const fornecedor = await getFornecedorById(id);
 
   if (!fornecedor) {
