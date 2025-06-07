@@ -9,6 +9,12 @@ interface Categoria {
   nome: string;
 }
 
+interface CategoriaEditPageProps {
+  params: {
+    id: string;
+  };
+}
+
 async function getCategoriaById(id: string): Promise<Categoria | null> {
   const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
   try {
@@ -33,9 +39,7 @@ async function getCategoriaById(id: string): Promise<Categoria | null> {
 
 export default async function EditCategoriaPage({
   params,
-}: {
-  params: { id: string };
-}) {
+}: CategoriaEditPageProps) {
   const { id } = params;
 
   const categoria = await getCategoriaById(id);
