@@ -15,8 +15,9 @@ const LoginForm = () => {
     try {
       await login(username, password);
       toast.success("Login realizado com sucesso!");
-    } catch (error: any) {
-      toast.error(error.message || "Erro ao fazer login.");
+    } catch (error) {
+      console.log(error);
+      toast.error("Erro ao fazer login.");
     }
   };
 

@@ -36,9 +36,9 @@ export const AuthService = {
       Cookies.set(TOKEN_COOKIE_NAME, JSON.stringify(userData), { expires: 1 });
 
       return userData;
-    } catch (error: any) {
-      console.error("Erro de login:", error.message);
-      throw error; // Propagar o erro para o componente que chamou
+    } catch (error) {
+      console.error("Erro de login:", error);
+      throw error;
     }
   },
 
