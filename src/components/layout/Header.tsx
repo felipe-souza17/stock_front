@@ -1,7 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { Package2, Menu } from "lucide-react";
+import {
+  Package2,
+  Menu,
+  LayoutDashboard,
+  Truck,
+  Tag,
+  LogOut,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -10,8 +17,10 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { useAuth } from "@/context/AuthContext";
 
 export default function Header() {
+  const { logout } = useAuth();
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
       <div className="container flex h-16 items-center px-4 md:px-6">
@@ -20,28 +29,38 @@ export default function Header() {
             href="/"
             className="flex items-center gap-2 text-lg font-semibold md:text-base whitespace-nowrap"
           >
-            <Package2 className="h-6 w-6" />
+            <LayoutDashboard className="h-6 w-6" />
             <span className="sr-only">Controle de Estoque</span>
             Controle de Estoque
           </Link>
           <Link
             href="/produtos"
-            className="text-muted-foreground transition-colors hover:text-foreground"
+            className="flex gap-1 items-center  text-muted-foreground transition-colors hover:text-foreground"
           >
+            <Package2 className="h-4 w-4" />
             Produtos
           </Link>
           <Link
             href="/categorias"
-            className="text-muted-foreground transition-colors hover:text-foreground"
+            className="flex gap-1 items-center  text-muted-foreground transition-colors hover:text-foreground"
           >
+            <Tag className="h-4 w-4" />
             Categorias
           </Link>
           <Link
             href="/fornecedores"
-            className="text-muted-foreground transition-colors hover:text-foreground"
+            className="flex gap-1 items-center text-muted-foreground transition-colors hover:text-foreground"
           >
+            <Truck className="h-4 w-4" />
             Fornecedores
           </Link>
+          <Button
+            onClick={logout}
+            className="ml-4 bg-red-600 hover:bg-red-700 text-white flex items-center gap-1"
+          >
+            <LogOut className="h-4 w-4" />
+            Sair
+          </Button>
         </nav>
 
         <Sheet>
@@ -63,21 +82,40 @@ export default function Header() {
                   href="/"
                   className="flex items-center gap-2 text-lg font-semibold"
                 >
-                  <Package2 className="h-6 w-6" />
+                  <LayoutDashboard className="h-6 w-6" />
                   <span>Controle de Estoque</span>
                 </Link>
               </SheetTitle>{" "}
             </SheetHeader>
             <nav className="grid gap-6 ml-4 text-lg font-medium">
-              <Link href="/produtos" className="hover:text-foreground">
+              <Link
+                href="/produtos"
+                className="flex gap-1 items-center hover:text-foreground"
+              >
+                <Package2 className="h-4 w-4" />
                 Produtos
               </Link>
-              <Link href="/categorias" className="hover:text-foreground">
+              <Link
+                href="/categorias"
+                className="flex gap-1 items-center hover:text-foreground"
+              >
+                <Tag className="h-4 w-4" />
                 Categorias
               </Link>
-              <Link href="/fornecedores" className="hover:text-foreground">
+              <Link
+                href="/fornecedores"
+                className="flex gap-1 items-center hover:text-foreground"
+              >
+                <Truck className="h-4 w-4" />
                 Fornecedores
               </Link>
+              <Button
+                onClick={logout}
+                className=" bg-red-600 hover:bg-red-700 text-white flex items-center gap-1 w-24"
+              >
+                <LogOut className="h-4 w-4" />
+                Sair
+              </Button>
             </nav>
           </SheetContent>
         </Sheet>
