@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-
 import Header from "@/components/layout/Header";
-import { Toaster } from "sonner";
+import { Providers } from "./providers";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Controle de Estoque",
-  description: "Sistema para gerenciar produtos, categorias e fornecedores.",
+  description: "Sistema para gerenciamento de estoque de produtos",
 };
 
 export default function RootLayout({
@@ -18,13 +18,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR ">
       <body className={inter.className}>
-        <div className="flex min-h-screen w-full flex-col">
-          <Header />
-          <main className="flex flex-1 flex-col">{children}</main>
+        <Providers>
+          <main className="flex-grow">{children}</main>
           <Toaster />
-        </div>
+        </Providers>
       </body>
     </html>
   );
